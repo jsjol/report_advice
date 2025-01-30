@@ -1,0 +1,172 @@
+\documentclass[twoside,11pt]{article}
+
+% Any additional packages needed should be included after jmlr2e.
+% Note that jmlr2e.sty includes epsfig, amssymb, natbib and graphicx,
+% and defines many common macros, such as 'proof' and 'example'.
+%
+% It also sets the bibliographystyle to plainnat; for more information on
+% natbib citation styles, see the natbib documentation, a copy of which
+% is archived at http://www.jmlr.org/format/natbib.pdf
+
+\usepackage{jmlr2e}
+
+% Definitions of handy macros can go here
+\usepackage[utf8]{inputenc}        % allow utf-8 input
+\usepackage[T1]{fontenc}           % use 8-bit T1 fonts
+
+\newcommand{\dataset}{{\cal D}}
+\newcommand{\fracpartial}[2]{\frac{\partial #1}{\partial  #2}}
+
+% Heading arguments are {volume}{year}{pages}{submitted}{published}{author-full-names}
+
+%\jmlrheading{1}{2000}{1-48}{4/00}{10/00}{Marina Meil\u{a} and Michael I. Jordan}
+
+% Short headings should be running head and authors last names
+
+%\ShortHeadings{Short title}{Sjölund}
+\firstpageno{1}
+
+\begin{document}
+
+\title{Advice for Master's thesis reports\\\normalsize{Version: \today}}
+
+\author{\name \href{https://jsjol.github.io/}{Jens Sjölund} \email jens.sjolund@it.uu.se \\
+        \addr Department of Information Technology \\
+        Uppsala University, Sweden
+        \AND
+        \name \href{https://smair.github.io/}{Sebastian Mair} \email sebastian.mair@liu.se \\
+        \addr Department of Computer and Information Science \\
+        Linköping University, Sweden
+    }
+
+% \date{\today}
+
+\maketitle
+
+\begin{abstract}%   <- trailing '%' for backward compatibility of .sty file
+This is a compilation of advice we found ourselves repeating over and over again to students writing their Master's thesis reports on machine learning. Nevertheless, we believe much of it applies in other areas of science and engineering as well.  
+\end{abstract}
+
+% \begin{keywords}
+%   Advice, Master Thesis
+% \end{keywords}
+
+\section{Report structure}
+There are no formal requirements on the length of Master's thesis reports but in our experience most end up between 40 and 80 pages long. We suggest the following structure:\\ 
+
+\noindent\textbf{Introduction}
+
+    \begin{enumerate}
+        \item \textbf{Motivation.} Start with a high-level introduction to the area and then motivate why the topic of the thesis is important.
+        \item \textbf{Brief literature review.} Briefly summarize the main existing methods and their shortcomings.
+        \item \textbf{Research questions.} In light of the motivation and existing knowledge, what are the outstanding gaps that you intend to fill?
+    \end{enumerate}
+
+\noindent\textbf{Background}
+
+    \begin{enumerate}
+        \item \textbf{Literature review.} This should not read like a shopping list, but instead synthesize and compare different approaches related to your research questions. See, e.g., Section~2.2 in \citet{hausner2022explainable} or Chapter~2 in \citet{pettersson2023knowledge} for two good examples.
+        \item \textbf{Background information.} Provide sufficient detail so that one of your peers would be able to understand the thesis. In other words, your thesis should be self-contained for someone in the same program.
+    \end{enumerate}
+
+\noindent\textbf{Methods}
+
+    \begin{enumerate}
+        \item \textbf{Focus on your contributions.} Describe your method in detail, focusing on the parts that are new or different from previous work. Explain in what way your method addresses your research questions.
+        \item \textbf{Use mathematical formalism.} If properly done, mathematical statements make the presentation both clearer and more precise. Algorithms should preferably be typeset using algorithm environments. 
+    \end{enumerate}
+
+\noindent\textbf{Experiments}
+    \begin{enumerate}
+        \item \textbf{Experimental setup.} Ideally, it should be possible to relate each experiment to one of the research questions, e.g., by proving or disproving a hypothesis, studying the impact of a particular component using an ablation study, or investigating the effect of varying a parameter.  
+        \item \textbf{Data.} Describe how the data was acquired and what it contains. Also, describe any preprocessing steps you perform.
+        \item \textbf{Baselines.} Explain which methods you compare against and what their setup is (hyperparameters, etc.).
+        \item \textbf{Results.} We suggest that you comment briefly on the results as you present them, highlighting especially noteworthy things. In-depth discussions should be saved for the discussion section. In general, strive to keep the presentation of a given experiment relatively self-contained and focused. It makes it easier for the reader if you focus on one experiment at a time.
+    \end{enumerate}
+    
+
+\noindent\textbf{Discussion}
+\begin{enumerate}
+    \item \textbf{Link results to research questions.} Explain what the experiments tell you about your research questions. If any of the experiments ``failed'' or did not behave as expected, try to reason about potential explanations and propose additional experiments that could be performed to lead the investigation further.
+    \item \textbf{Limitations and future work.} Describe the limitations of your work, i.e., under what assumptions do your conclusions hold? What potentially relevant aspects were outside the scope of your study? Possibly, suggest avenues for future work building upon your study.
+\end{enumerate}
+
+\noindent\textbf{Conclusion}
+\begin{enumerate}
+    \item \textbf{Recap the motivation and setting.} The conclusion section is often quite similar to the abstract, but longer. It should give a brief recap of the problem setting and the research questions.
+    \item \textbf{Summarize your contributions in light of the experimental results.} Describe how the method you proposed manages to answer your research questions.
+\end{enumerate}
+
+\noindent\textbf{References}
+\begin{enumerate}
+    \item \textbf{Check your references.} Make sure the style of your references is correct. There is no need to include URLs and DOIs. If you are citing a preprint, e.g., an arXiv paper, make sure to check if it has been published in the meantime. 
+\end{enumerate}
+
+\section{Style}
+
+\subsection*{Writing}
+\begin{enumerate}
+    \item \textbf{Write in English.} Either UK or US English is fine, but try to be consistent.
+    
+    \item \textbf{Write correct English.} Your editor most likely supports spell correction. Use it!
+    
+    \item \textbf{Use active voice.} ``We trained the neural network'' is preferable over ``The neural network was trained''.  
+   
+    \item \textbf{Use consistent terminology.} Many concepts are known under different names (e.g. artificial neural networks, neural networks, deep neural networks, deep learning), but to avoid confusion you should pick one and consistently use only that. 
+    
+    \item \textbf{Avoid abbreviations}. As a rule of thumb, only ever consider abbreviations that are either (i) generally used and understood by everyone in the field, e.g., PDE for Partial Differential Equation, or (ii) used everywhere in your report, e.g., at least three times in the same section. Consider adding a list of abbreviations/acronyms in the beginning.
+
+    \item \textbf{Use correct references.} When referring to a specific algorithm, equation, figure, section, or table, the (usually lowercase) object gets capitalized, e.g., ``as we can see in Figure~5'' vs ``as depicted in the figure''. Use \texttt{\textbackslash eqref} when referencing equations. 
+
+    \item \textbf{Only cite academic work.} If you need a statement from a company website or blog, set a footnote. Only cite proper academic output. Some software packages can be seen as academic work. If you are unsure what to cite, cite the paper that introduced the idea/concept and an article or book describing it best. Do not cite random papers for well-known concepts!
+    
+    \item \textbf{Use a consistent citation style.} The Harvard style is preferred. Note that there is a difference between an active citation (you would read it out loud) and a passive one (you would not read it out loud). Two examples: Author et al. (2023) show a result. A new result was shown (Author et al., 2023).
+
+\end{enumerate}
+
+\subsection*{Mathematics}
+Mathematical writing is fundamentally different from creative and expository writing. In addition to the advice below, please refer to the ``Ten Simple Rules for Mathematical Writing'' by Dimitri P. Bertsekas\footnote{\url{https://www.mit.edu/~dimitrib/Ten_Rules.html}}.
+\begin{enumerate}
+    \item \textbf{Use \LaTeX.} Try to avoid writing in MS Word whenever possible.
+    
+    \item \textbf{Never start a sentence with a mathematical symbol.} Never.
+    
+    \item \textbf{Respect conventions.} Although you are technically free to call your inputs $y$ and your outputs $x$, the reader will dislike you for it.
+    
+    \item \textbf{Math is always a part of a sentence.} There is no equation between two sentences. An equation is a part of a sentence and thus needs proper punctuation marks!
+    
+    \item \textbf{Use single-letter variables.} If necessary, use subscripts for additional clarity. It is also advised to specify the space of newly introduced variables, e.g., $\lambda\geq0$ (or $\lambda\in\mathbb{R}_{\geq0}$, or $\lambda\in\mathbb{R}_0^+$). In addition, be consistent. The meaning of a variable should not change during sections.    
+\end{enumerate}
+
+\subsection*{Presentation}
+\begin{enumerate}
+     \item \textbf{Start with the big picture.} Start most sections and subsections by reminding the reader about the big picture, where you are, and what you'll describe next.
+    
+    \item \textbf{Present things in logical, not chronological, order.} The point of the report is to communicate your findings in the way that makes the most sense for the \emph{reader}. This is often not the same way that you arrived at them. See the note on ``How to write a scientific report''\footnote{\url{https://www.it.uu.se/edu/course/homepage/projektTDB/vt05/examination/rapport.pdf}} by Michael Thuné for a longer explanation of this point.
+    
+     \item \textbf{Structure your text.} Use sections, subsections, subsubsections, and paragraphs wisely. Not every subsection needs a number, but headings help to structure the text. Thus, if you have two pages of full text, it might be wise to break the text and introduce a heading somewhere.
+     
+    \item \textbf{Table of contents.} If your table of contents is longer than 1.5-2 pages, reduce. The reduction should not be done by removing structure but rather by not enlisting every subsubsection in the table of contents. Not every subsection needs a number!
+
+    \item \textbf{State your contributions.} It should be clearly stated what your contributions are. If two students jointly write the thesis, it should be clear which student contributed what. Ideally, this is done on a chapter basis or within an \textit{outline} paragraph at the end of the introduction. 
+
+    \item \textbf{Use tables sparingly.} Use \texttt{booktabs} and read \url{https://nhigham.com/2019/11/19/better-latex-tables-with-booktabs/}. Table captions go above tables while figure captions are placed below figures.
+    
+    \item \textbf{Use images.} Images often help to illustrate concepts and ease understanding. State the image sources if necessary and use appropriate image qualities. 
+    
+    \item \textbf{Do proper figures.} Figures should have clearly defined axis labels and include a legend. Any text in the figure should approximately match the font size of the thesis main text, thus, it should be readable without zooming in. A transparent grid in the background usually improves the appearance and readability of the figure. Try to use colors that also work for colorblind readers and look good when the thesis is printed in black and white. Images, e.g., created with \texttt{matplotlib}, are best saved in pdf format. 
+\end{enumerate}
+
+
+% Acknowledgements should go at the end, before appendices and references
+% \acks{We would like to acknowledge support for this project
+% from . }
+
+
+%\appendix
+%\section*{Appendix: A good example of a literature review.}
+
+ \vskip 0.2in
+ \bibliography{refs}
+
+\end{document}
